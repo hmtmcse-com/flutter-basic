@@ -7,7 +7,11 @@ class MaterialExample extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Text('Bismillah App'),
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text('Sample Code'),
+        ),
+      ),
     );
   }
 }
