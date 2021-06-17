@@ -12,10 +12,22 @@ class CardExample extends StatelessWidget {
           title: const Text('Card Example Code'),
         ),
         body: Card(
+          borderOnForeground: true,
+          color: Colors.grey,
+          shadowColor: Colors.red,
+          margin: EdgeInsets.all(20),
           child: SizedBox(
             height: 300,
             width: 300,
-            child: Text('This is new card.'),
+            child: Center(
+              child: Text(
+                'This is new card.',
+                style: TextStyle(
+                  fontSize: 20,
+                  color: Colors.red,
+                ),
+              ),
+            ),
           ),
         ),
       ),
