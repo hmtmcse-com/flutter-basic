@@ -1,15 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-void main() => (runApp(GridExample()));
+void main() => (runApp(GridViewExample()));
 
-class GridExample extends StatelessWidget {
+class GridViewExample extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('Grid Example Code'),
+          title: const Text('Grid View Example Code'),
         ),
         body: GridView.count(
           primary: false,
