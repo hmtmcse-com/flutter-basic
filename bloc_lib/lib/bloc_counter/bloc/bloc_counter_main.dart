@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'counter_cubit.dart';
+import 'counter_bloc.dart';
 import 'counter_observer.dart';
 
 void main() {
@@ -13,12 +13,12 @@ class CounterMain extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter BLoC Lib Example',
+      title: 'Flutter BLoC Lib bloc Example',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
       home: BlocProvider(
-        create: (_) => CounterCubit(),
+        create: (_) => CounterBloc(),
         child: CounterView(),
       ),
     );
@@ -30,10 +30,10 @@ class CounterView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Flutter BLoC Lib Example'),
+        title: Text('Flutter BLoC Lib bloc Example'),
       ),
       body: Center(
-        child: BlocBuilder<CounterCubit, int>(
+        child: BlocBuilder<CounterBloc, int>(
           builder: (context, state) {
             return Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -57,7 +57,7 @@ class CounterView extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           FloatingActionButton(
-            onPressed: () => context.read<CounterCubit>().increment(),
+            onPressed: () => context.read<CounterBloc>().add(CounterEvent.increment),
             tooltip: 'Increment',
             child: Icon(Icons.add),
           ),
@@ -65,7 +65,7 @@ class CounterView extends StatelessWidget {
             padding: EdgeInsets.all(5),
           ),
           FloatingActionButton(
-            onPressed: () => context.read<CounterCubit>().decrement(),
+            onPressed: () => context.read<CounterBloc>().add(CounterEvent.decrement),
             tooltip: 'Decrement',
             child: Icon(Icons.remove),
           )
