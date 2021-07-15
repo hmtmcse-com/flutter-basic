@@ -32,6 +32,10 @@ class PFHTTPRequester {
     return this;
   }
 
+  static PFHTTPRequester instance() {
+    return PFHTTPRequester();
+  }
+
   Future<PFHttpResponse> requestTo(String url, String method, {Object? data}) async {
     var uri = Uri.parse(url);
     http.Request request = http.Request(method, uri);
@@ -99,14 +103,15 @@ Future<void> main() async {
     }
   };
 
-  var response = await pfHTTPRequester.POSTRequest(baseURL + "api/v1/card/form-data", data: data);
+
+
+  var response = await PFHTTPRequester.instance().POSTRequest(baseURL + "api/v1/card/form-data", data: data);
   printResponse(response);
 
-  response = await pfHTTPRequester.jsonPOSTRequest(baseURL + "api/v1/card/create", data: jsonCreate);
+  response = await PFHTTPRequester.instance().jsonPOSTRequest(baseURL + "api/v1/card/create", data: jsonCreate);
   printResponse(response);
 
-  pfHTTPRequester.clearHeader();
-  response = await pfHTTPRequester.GETRequest(baseURL + "api/v1/card/list");
+  response = await PFHTTPRequester.instance().GETRequest(baseURL + "api/v1/card/list");
   printResponse(response);
 
 
