@@ -49,6 +49,14 @@ class FormSubmission extends StatelessWidget {
                     _inputValues['description'] = value;
                   },
                 ),
+                CustomRadioListTile(
+                  labelText: "Gender",
+                  valueAndName: {
+                    'male': 'Male',
+                    'female': 'Female',
+                    'other': 'Other',
+                  },
+                ),
                 ElevatedButton(
                   onPressed: () {
                     print(_inputValues);
@@ -60,6 +68,65 @@ class FormSubmission extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+class CustomRadioListTile extends StatefulWidget {
+  final String labelText;
+  final ValueChanged<String>? onChange;
+  final Map<dynamic, String> valueAndName;
+
+  const CustomRadioListTile({
+    required this.labelText,
+    this.onChange,
+    required this.valueAndName,
+  });
+
+  @override
+  State<StatefulWidget> createState() {
+    return _CustomRadioListTile();
+  }
+}
+
+class _CustomRadioListTile extends State<CustomRadioListTile> {
+  String? _groupValue = "";
+
+  _onChange(String? value) {
+    if (widget.onChange != null && value != null) {
+      widget.onChange!(value);
+    }
+    setState(() {
+      _groupValue = value;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    List<Widget> widgets = [];
+    if (widget.valueAndName.isNotEmpty) {
+      widgets.add(
+        ListTile(
+          contentPadding: EdgeInsets.fromLTRB(3, 0, 0, 0),
+          title: Text('Select Gender'),
+        ),
+      );
+    }
+    widget.valueAndName.forEach((key, value) {
+      widgets.add(
+        RadioListTile<String>(
+          contentPadding: EdgeInsets.fromLTRB(6, 0, 0, 0),
+          onChanged: (value) {
+            _onChange(value);
+          },
+          title: Text(value),
+          value: key,
+          groupValue: _groupValue,
+        ),
+      );
+    });
+    return Column(
+      children: widgets,
     );
   }
 }
