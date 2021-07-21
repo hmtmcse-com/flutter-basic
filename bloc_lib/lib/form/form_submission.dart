@@ -108,7 +108,7 @@ class _CustomRadioListTile extends State<CustomRadioListTile> {
       widgets.add(
         ListTile(
           contentPadding: EdgeInsets.fromLTRB(3, 0, 0, 0),
-          title: Text('Select Gender'),
+          title: Text(widget.labelText),
         ),
       );
     }
