@@ -56,6 +56,9 @@ class FormSubmission extends StatelessWidget {
                     'female': 'Female',
                     'other': 'Other',
                   },
+                  onChange: (value) {
+                    _inputValues['gender'] = value;
+                  },
                 ),
                 ElevatedButton(
                   onPressed: () {
