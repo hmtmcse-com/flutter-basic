@@ -60,6 +60,18 @@ class FormSubmission extends StatelessWidget {
                     _inputValues['gender'] = value;
                   },
                 ),
+                CustomCheckboxListTile(
+                  labelText: "I accept the license agreement",
+                  onChange: (value) {
+                    _inputValues['license'] = value;
+                  },
+                ),
+                CustomSwitchListTile(
+                  labelText: "Is Required",
+                  onChange: (value) {
+                    _inputValues['isRequired'] = value;
+                  },
+                ),
                 ElevatedButton(
                   onPressed: () {
                     print(_inputValues);
@@ -134,6 +146,92 @@ class _CustomRadioListTile extends State<CustomRadioListTile> {
   }
 }
 
+class CustomCheckboxListTile extends StatefulWidget {
+  final String labelText;
+  final ValueChanged<bool>? onChange;
+  final ListTileControlAffinity controlAffinity;
+
+  const CustomCheckboxListTile({
+    required this.labelText,
+    this.onChange,
+    this.controlAffinity = ListTileControlAffinity.leading,
+  });
+
+  @override
+  State<StatefulWidget> createState() {
+    return _CustomCheckboxListTile();
+  }
+}
+
+class _CustomCheckboxListTile extends State<CustomCheckboxListTile> {
+  bool? isChecked = false;
+
+  _onChange(bool? value) {
+    if (widget.onChange != null && value != null) {
+      widget.onChange!(value);
+    }
+    setState(() {
+      isChecked = value;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return CheckboxListTile(
+      contentPadding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+      onChanged: (value) {
+        _onChange(value);
+      },
+      value: isChecked,
+      controlAffinity: widget.controlAffinity,
+      title: new Text(widget.labelText),
+    );
+  }
+}
+
+class CustomSwitchListTile extends StatefulWidget {
+  final String labelText;
+  final ValueChanged<bool>? onChange;
+  final ListTileControlAffinity controlAffinity;
+
+  const CustomSwitchListTile({
+    required this.labelText,
+    this.onChange,
+    this.controlAffinity = ListTileControlAffinity.leading,
+  });
+
+  @override
+  State<StatefulWidget> createState() {
+    return _CustomSwitchListTile();
+  }
+}
+
+class _CustomSwitchListTile extends State<CustomSwitchListTile> {
+  bool isChecked = false;
+
+  _onChange(bool value) {
+    if (widget.onChange != null) {
+      widget.onChange!(value);
+    }
+    setState(() {
+      isChecked = value;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return SwitchListTile(
+      contentPadding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+      onChanged: (value) {
+        _onChange(value);
+      },
+      value: isChecked,
+      controlAffinity: widget.controlAffinity,
+      title: new Text(widget.labelText),
+    );
+  }
+}
+
 class CustomTextFormField extends StatelessWidget {
   final String labelText;
   final String? hintText;
@@ -169,7 +267,9 @@ class CustomTextFormField extends StatelessWidget {
           hintText: hintText,
         ),
         obscureText: isPassword ? true : false,
-        keyboardType: isEmail ? TextInputType.emailAddress : (maxLines != null ? TextInputType.multiline : TextInputType.text),
+        keyboardType: isEmail
+            ? TextInputType.emailAddress
+            : (maxLines != null ? TextInputType.multiline : TextInputType.text),
       ),
     );
   }
