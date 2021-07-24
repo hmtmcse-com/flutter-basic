@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 
@@ -28,9 +30,26 @@ class Home extends StatelessWidget {
     tts.setSpeechRate(0.2);
   }
 
-  _saySomething() async {
+  _saySomething(String text) async {
     // print(await tts.getLanguages);
-    await tts.speak(controller.text);
+    await tts.speak(text);
+  }
+
+  _loopWords() {
+    var listData = [
+      'abandon',
+      'about',
+      'ability',
+      'above',
+      'absolutely',
+      'absorb',
+      'access',
+      'accompany',
+    ];
+    for (var element in listData) {
+      _saySomething(element);
+      sleep(const Duration(seconds:2));
+    }
   }
 
   @override
@@ -44,7 +63,8 @@ class Home extends StatelessWidget {
           ),
           ElevatedButton(
               onPressed: () {
-                _saySomething();
+                // _saySomething(controller.text);
+                _loopWords();
                 print("Played");
               },
               child: Text('Speak'))
