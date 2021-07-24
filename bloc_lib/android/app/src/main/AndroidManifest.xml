@@ -1,5 +1,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.hmtmcse.bloclib.bloc_lib">
+
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.TTS_SERVICE" />
+        </intent>
+    </queries>
+
    <application
         android:label="bloc_lib"
         android:icon="@mipmap/ic_launcher">
