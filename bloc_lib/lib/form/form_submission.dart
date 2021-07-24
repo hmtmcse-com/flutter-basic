@@ -26,6 +26,8 @@ class FormSubmission extends StatelessWidget {
                     _inputValues['name'] = value;
                   },
                 ),
+
+
                 CustomTextFormField(
                   labelText: "Title",
                   hintText: 'Please enter title',
@@ -34,6 +36,8 @@ class FormSubmission extends StatelessWidget {
                     _inputValues['title'] = value;
                   },
                 ),
+
+
                 CustomTextFormField(
                   labelText: "Password",
                   hintText: 'Please enter password',
