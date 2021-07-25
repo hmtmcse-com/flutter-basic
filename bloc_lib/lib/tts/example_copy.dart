@@ -44,7 +44,18 @@ class Home extends StatelessWidget {
       'absolutely',
       'absorb',
       'access',
-      'accompany',
+      'although',
+      'advance',
+      'academic',
+      'adult',
+      'acknowledge',
+      'after',
+      'agreement',
+      'against',
+      'allow',
+      'amount',
+      'aloud',
+      'all right',
     ];
     for (var element in listData) {
       _saySomething(element);
