@@ -26,7 +26,7 @@ class Home extends StatelessWidget {
   final TextEditingController controller = TextEditingController(text: 'Hello world');
 
   Home() {
-    // tts.setLanguage('en');
+    tts.setLanguage('en');
     tts.setSpeechRate(0.2);
   }
 
